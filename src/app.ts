@@ -9,7 +9,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import compression from "compression";
 import { routers } from './infrastructure/express/routeManager';
-import 'dotenv/config';
+//import 'dotenv/config';
 
 let app = express();
 
