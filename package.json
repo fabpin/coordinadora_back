@@ -1,0 +1,51 @@
+{
+  "name": "base_framework_ts",
+  "version": "2.0.0",
+  "description": "Framework base para desarrollo de API con Express version 5",
+  "main": "app",
+  "scripts": {
+    "start": "node built/bin/www.js",
+    "build": "tsc & grunt copy",
+    "build:watch": "tsc -w & grunt copy & grunt watch",
+    "dev": "tsc -w & grunt copy & grunt watch & nodemon built/bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/Daywalker04/base_framework_ts.git"
+  },
+  "author": "Fabio Andres Pino G",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://bitbucket.org/Daywalker04/base_framework_ts/issues"
+  },
+  "homepage": "https://bitbucket.org/Daywalker04/base_framework_ts#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.4.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.1",
+    "@types/http-errors": "^2.0.4",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.17",
+    "grunt": "^1.6.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-nodeunit": "^5.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
