@@ -1,5 +1,7 @@
 // @ts-ignore
 let createError = require('http-errors');
+import dotenv from 'dotenv';
+dotenv.config();
 import express, { Express, Request, Response, NextFunction } from 'express';
 import * as path from 'path';
 import cookieParser from 'cookie-parser';
@@ -9,7 +11,6 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import compression from "compression";
 import { routers } from './infrastructure/express/routeManager';
-import 'dotenv/config';
 
 let app = express();
 

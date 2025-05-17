@@ -4,7 +4,7 @@ export interface User {
     id_number: string,
     email: string,
     password: string,
-    createdAt: string,
     identification_types_id: number,
+    createdAt: string,
     id?: Number
 };

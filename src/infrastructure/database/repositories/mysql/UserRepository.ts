@@ -1,53 +1,60 @@
 import { IUser } from "../../models/mysql/IUser";
 import { connectionMySql } from "../../mysqlConf";
 import Logger from "../../../../lib/logger";
+import { QueryResult } from "mysql2";
 
 export class UserReposity {
-    constructor(){}
-
-    async getUserById(id: number){
-        return connectionMySql.query("SELECT * FROM users WHERE id = ?", [id])
-                                .then((result) => {
-                                    return result[0];
-                                });
+    async getUserById(id: number) {
+        await connectionMySql
+        const [rows] = await connectionMySql.query("SELECT * FROM users WHERE id = ?", [id]);
+        // @ts-ignore
+        let iUser: IUser = rows[0];
+        return iUser;
     }
 
     async getUserByEmail(email: string) {
-        return connectionMySql.query("SELECT * FROM users WHERE email = ?", [email])
-                                .then((result) => {
-                                    return result[0];
-                                });
+        try {
+            const [rows] = await connectionMySql.query('SELECT * FROM coordinadora.users WHERE email = ?', [email]);
+            // @ts-ignore
+            let iUser: IUser = rows[0];
+            return iUser;
+        } catch (error) {
+            Logger.error(error);
+            throw new Error('Error extracting user by email');
+        }
     }
 
-    async createUser(user: IUser){
-     return connectionMySql.query(`INSERT INTO users (
-        'id', 
-        'name', 
-        'lastname', 
-        'id_number', 
-        'email', 
-        'password', 
-        'createdAt', 
-        'updatedAt', 
-        'deletedAt', 
-        'identification_types_id') 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,[
-            null, 
-            user.name, 
-            user.lastname, 
-            user.id_number, 
-            user.email, 
-            user.password, 
-            new Date().toISOString(), 
-            null,
-            null, 
-            user.identification_types_id
-        ]).then((result) => {
-            const [row] = result;
-            return row;
-        }).catch((error) => {
+    async createUser(user: IUser) {
+        try {
+            const [rows] = await connectionMySql.query(`
+                INSERT INTO users (
+                    id, 
+                    name, 
+                    lastname, 
+                    id_number, 
+                    email, 
+                    password, 
+                    createdAt, 
+                    updatedAt, 
+                    deletedAt, 
+                    identification_types_id
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+                    null,
+                    user.name,
+                    user.lastname,
+                    user.id_number,
+                    user.email,
+                    user.password,
+                    new Date().toISOString(),
+                    null,
+                    null,
+                    user.identification_types_id
+                ]
+            );
+            return rows;
+        } catch (error) {
             Logger.error(error);
-            throw new Error(error);
-        }); 
+            throw new Error('error creating user');
+        }
     }
 }
