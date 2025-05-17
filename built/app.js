@@ -46,6 +46,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 const routeManager_1 = require("./infrastructure/express/routeManager");
+require("dotenv/config");
 let app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use(helmet_1.default.xssFilter());

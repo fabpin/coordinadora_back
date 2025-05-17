@@ -21,7 +21,7 @@ $ yarn dev
 ```
 
 ## Diseño de la base de datos coordinadora
-![Diseño](https://octodex.github.com/images/minion.png)
+![Diseño](https://github.com/fabpin/coordinadora_back/blob/dev/coordinadora-v01-15-5-2025.png)
 
 ###### Notas
 
