@@ -7,9 +7,40 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("../app"));
 const logger_1 = __importDefault(require("../lib/logger"));
 const http_1 = __importDefault(require("http"));
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
+const Ssl_1 = require("./../infrastructure/config/Ssl");
 let port = normalizePort(process.env.PORT || '3000');
+let ssl = new Ssl_1.SslConfig();
+let sslConfig = ssl.getSslConfig();
+let server;
+let options;
 app_1.default.set('port', port);
-let server = http_1.default.createServer(app_1.default);
+if (process.env.PORT !== "443") {
+    logger_1.default.debug("Connecting on port " + process.env.PORT);
+    server = http_1.default.createServer(app_1.default);
+}
+else {
+    logger_1.default.debug("Connecting on port " + process.env.PORT);
+    let tempEncoding = { encoding: (process.env.SSL_UTF || 'utf8') };
+    if (sslConfig.ca && sslConfig.ca !== '') {
+        options = {
+            key: fs_1.default.readFileSync(sslConfig.key, tempEncoding),
+            cert: fs_1.default.readFileSync(sslConfig.cert, tempEncoding),
+            ca: fs_1.default.readFileSync(sslConfig.ca, tempEncoding),
+            dhparam: fs_1.default.readFileSync(sslConfig.dhparam, tempEncoding)
+        },
+            server = https_1.default.createServer(options, app_1.default);
+    }
+    else {
+        options = {
+            key: fs_1.default.readFileSync(sslConfig.key, tempEncoding),
+            cert: fs_1.default.readFileSync(sslConfig.cert, tempEncoding),
+            dhparam: fs_1.default.readFileSync(sslConfig.dhparam, tempEncoding)
+        },
+            server = https_1.default.createServer(options, app_1.default);
+    }
+}
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

@@ -2,6 +2,7 @@ import { User } from "../../domain/entities/User";
 import { IAuthenticated } from "../interface/IAuthenticated";
 import bcrypt  from "bcrypt";
 import { UserReposity } from "../../infrastructure/database/repositories/mysql/UserRepository";
+import Logger from './../../lib/logger';
 
 export class LoginUser {
     private user: User = { 
@@ -22,6 +23,7 @@ export class LoginUser {
     }
 
     async authenticated():Promise <IAuthenticated> {
+        Logger.debug('authenticated user-cases');
         const userSaved:User = await this.userReposity.getUserByEmail(this.user.email);
         return {authenticated: bcrypt.compareSync(this.user.password, userSaved.password), userSaved};
     }

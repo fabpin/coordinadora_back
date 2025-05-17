@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import { LoginUser } from "../../application/use-cases/loginUser";
 import jwt, {SignOptions} from "jsonwebtoken";
 import { Success, Error } from "../DTO/System";
+import Logger from './../../lib/logger';
 
 export function loginUser(req:Request, res:Response) {
+    Logger.debug('loginUser Controller');
     const { email, password } = req.body;
     let loginUser = new LoginUser(email, password);
     let success: Success = { cod: 0, message: "N/A", payload: {} };

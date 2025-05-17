@@ -48,9 +48,11 @@ const helmet_1 = __importDefault(require("helmet"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 const routeManager_1 = require("./infrastructure/express/routeManager");
+const CordsMiddleware = __importStar(require("./infrastructure/config/CordsMiddleware"));
 let app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use(helmet_1.default.xssFilter());
+app.use(CordsMiddleware.setHeaders);
 app.use(body_parser_1.default.json());
 app.use((0, compression_1.default)());
 const stream = {

@@ -38,3 +38,32 @@
 2025-05-16 22:37:34:3734 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
 2025-05-16 22:37:35:3735 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
 2025-05-16 22:40:36:4036 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:34:42:3442 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:34:42:3442 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:34:43:3443 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:34:43:3443 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:37:37:3737 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:37:37:3737 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:45:20:4520 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:45:20:4520 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:45:21:4521 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:45:21:4521 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:45:42:4542 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:45:42:4542 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:45:43:4543 [37mdebug[39m: [37mConnecting on port 3000[39m
+2025-05-17 17:45:43:4543 [37mdebug[39m: [37mServer is up and running @ http://localhost:3000[39m
+2025-05-17 17:45:49:4549 [37mdebug[39m: [37mloginUser Controller[39m
+2025-05-17 17:45:49:4549 [37mdebug[39m: [37mauthenticated user-cases[39m
+2025-05-17 17:45:49:4549 [37mdebug[39m: [37mgetUserByEmail UserRepository[39m
+2025-05-17 17:45:49:4549 [35mhttp[39m: [35mPOST /api/users/login 200 572 - 64.916 ms[39m
+[35m[39m
+2025-05-17 17:46:55:4655 [37mdebug[39m: [37mloginUser Controller[39m
+2025-05-17 17:46:55:4655 [37mdebug[39m: [37mauthenticated user-cases[39m
+2025-05-17 17:46:55:4655 [37mdebug[39m: [37mgetUserByEmail UserRepository[39m
+2025-05-17 17:46:55:4655 [35mhttp[39m: [35mPOST /api/users/login 200 572 - 46.670 ms[39m
+[35m[39m
+2025-05-17 17:47:35:4735 [37mdebug[39m: [37mloginUser Controller[39m
+2025-05-17 17:47:35:4735 [37mdebug[39m: [37mauthenticated user-cases[39m
+2025-05-17 17:47:35:4735 [37mdebug[39m: [37mgetUserByEmail UserRepository[39m
+2025-05-17 17:47:35:4735 [35mhttp[39m: [35mPOST /api/users/login 200 572 - 62.039 ms[39m
+[35m[39m

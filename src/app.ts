@@ -11,13 +11,18 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import compression from "compression";
 import { routers } from './infrastructure/express/routeManager';
+import * as CordsMiddleware from './infrastructure/config/CordsMiddleware';
 
 let app = express();
 
 //Configuration of helmet
 app.use(helmet());
+
 //Seguridad para ataques XSS
 app.use(helmet.xssFilter());
+
+//Cord Middleware
+app.use(CordsMiddleware.setHeaders);
 
 // parse application/json with bodyParser
 app.use(bodyParser.json());

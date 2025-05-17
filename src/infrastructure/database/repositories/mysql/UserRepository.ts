@@ -1,10 +1,10 @@
 import { IUser } from "../../models/mysql/IUser";
 import { connectionMySql } from "../../mysqlConf";
 import Logger from "../../../../lib/logger";
-import { QueryResult } from "mysql2";
 
 export class UserReposity {
     async getUserById(id: number) {
+        Logger.debug('getUserById UserRepository');
         await connectionMySql
         const [rows] = await connectionMySql.query("SELECT * FROM users WHERE id = ?", [id]);
         // @ts-ignore
@@ -13,6 +13,7 @@ export class UserReposity {
     }
 
     async getUserByEmail(email: string) {
+        Logger.debug('getUserByEmail UserRepository');
         try {
             const [rows] = await connectionMySql.query('SELECT * FROM coordinadora.users WHERE email = ?', [email]);
             // @ts-ignore
@@ -25,6 +26,7 @@ export class UserReposity {
     }
 
     async createUser(user: IUser) {
+        Logger.debug('createUser UserRepository');
         try {
             const [rows] = await connectionMySql.query(`
                 INSERT INTO users (

@@ -7,19 +7,49 @@
 import app from '../app';
 import Logger from "../lib/logger";
 import http from 'http';
+import https from 'https';
+import fs from 'fs';
+import { SslConfig } from './../infrastructure/config/Ssl';
 
 /**
  * Get port from environment and store in Express.
  */
 
 let port = normalizePort(process.env.PORT || '3000');
+let ssl = new SslConfig();
+let sslConfig  = ssl.getSslConfig();
+let server : any;
+let options: any;
+
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-let server = http.createServer(app);
+if (process.env.PORT !== "443") {
+    Logger.debug("Connecting on port " + process.env.PORT);
+    server = http.createServer(app);
+} else {
+    Logger.debug("Connecting on port " + process.env.PORT);
+    let tempEncoding:any = { encoding: (process.env.SSL_UTF || 'utf8') };
+    if (sslConfig.ca && sslConfig.ca !== '') {
+        options = {
+            key: fs.readFileSync(sslConfig.key, tempEncoding),
+            cert: fs.readFileSync(sslConfig.cert, tempEncoding),
+            ca: fs.readFileSync(sslConfig.ca, tempEncoding),
+            dhparam: fs.readFileSync(sslConfig.dhparam, tempEncoding)
+        },
+            server = https.createServer(options, app);
+    } else {
+        options = {
+            key: fs.readFileSync(sslConfig.key, tempEncoding),
+            cert: fs.readFileSync(sslConfig.cert, tempEncoding),
+            dhparam: fs.readFileSync(sslConfig.dhparam, tempEncoding)
+        },
+            server = https.createServer(options, app);
+    }
+}
 
 /**
  * Listen on provided port, on all network interfaces.
