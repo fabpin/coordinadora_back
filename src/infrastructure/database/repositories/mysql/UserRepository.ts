@@ -1,6 +1,7 @@
 import { IUser } from "../../models/mysql/IUser";
 import { connectionMySql } from "../../mysqlConf";
 import Logger from "../../../../lib/logger";
+import { format } from 'date-fns';
 
 export class UserReposity {
     async getUserById(id: number) {
@@ -47,7 +48,7 @@ export class UserReposity {
                     user.id_number,
                     user.email,
                     user.password,
-                    new Date().toISOString(),
+                    format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
                     null,
                     null,
                     user.identification_types_id
